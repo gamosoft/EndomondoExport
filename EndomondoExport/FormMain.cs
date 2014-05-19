@@ -76,12 +76,8 @@ namespace EndomondoExport
 
         private void chkSelectAll_CheckedChanged(object sender, EventArgs e)
         {
-            //this.cmbSportType.SelectedIndex = 0;
-            foreach (DataGridViewRow row in this.dataGridList.Rows)
-            {
-                DataGridViewCheckBoxCell cell = row.Cells["Select"] as DataGridViewCheckBoxCell;
-                cell.Value = this.chkSelectAll.Checked ? cell.TrueValue : cell.FalseValue;
-            }
+            this.Enabled = false;
+            bgWorkerSelectAll.RunWorkerAsync();
         }
 
         private void btnChooseOutput_Click(object sender, EventArgs e)
@@ -231,6 +227,20 @@ namespace EndomondoExport
         }
 
         private void bgWorkerDownload_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            this.Enabled = true;
+        }
+
+        private void bgWorkerSelectAll_DoWork(object sender, DoWorkEventArgs e)
+        {
+            foreach (DataGridViewRow row in this.dataGridList.Rows)
+            {
+                DataGridViewCheckBoxCell cell = row.Cells["Select"] as DataGridViewCheckBoxCell;
+                cell.Value = this.chkSelectAll.Checked ? cell.TrueValue : cell.FalseValue;
+            }
+        }
+
+        private void bgWorkerSelectAll_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             this.Enabled = true;
         }
