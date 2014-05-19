@@ -53,12 +53,14 @@
             this.txtOutputFolder = new System.Windows.Forms.TextBox();
             this.grpLogin = new System.Windows.Forms.GroupBox();
             this.grpActions = new System.Windows.Forms.GroupBox();
+            this.txtMaxWorkouts = new System.Windows.Forms.TextBox();
             this.cmbSportType = new System.Windows.Forms.ComboBox();
             this.chkOriginals = new System.Windows.Forms.CheckBox();
             this.rbtnGPX = new System.Windows.Forms.RadioButton();
             this.rbtnTCX = new System.Windows.Forms.RadioButton();
             this.bgWorkerList = new System.ComponentModel.BackgroundWorker();
             this.bgWorkerDownload = new System.ComponentModel.BackgroundWorker();
+            this.bgWorkerSelectAll = new System.ComponentModel.BackgroundWorker();
             this.starttimeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sportDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -67,7 +69,6 @@
             this.speedkmhavgDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.routeidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.workoutBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.txtMaxWorkouts = new System.Windows.Forms.TextBox();
             this.grpUserInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridList)).BeginInit();
             this.grpLogin.SuspendLayout();
@@ -80,7 +81,7 @@
             this.btnConnect.Location = new System.Drawing.Point(97, 82);
             this.btnConnect.Name = "btnConnect";
             this.btnConnect.Size = new System.Drawing.Size(114, 23);
-            this.btnConnect.TabIndex = 0;
+            this.btnConnect.TabIndex = 3;
             this.btnConnect.Text = "Connect";
             this.btnConnect.UseVisualStyleBackColor = true;
             this.btnConnect.Click += new System.EventHandler(this.btnConnect_Click);
@@ -91,7 +92,6 @@
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(198, 22);
             this.txtEmail.TabIndex = 1;
-            this.txtEmail.Text = "";
             // 
             // txtPassword
             // 
@@ -148,6 +148,7 @@
             this.txtDisplayName.ReadOnly = true;
             this.txtDisplayName.Size = new System.Drawing.Size(197, 22);
             this.txtDisplayName.TabIndex = 2;
+            this.txtDisplayName.TabStop = false;
             // 
             // lblUserId
             // 
@@ -165,6 +166,7 @@
             this.txtUserId.ReadOnly = true;
             this.txtUserId.Size = new System.Drawing.Size(197, 22);
             this.txtUserId.TabIndex = 0;
+            this.txtUserId.TabStop = false;
             // 
             // btnListWorkouts
             // 
@@ -190,7 +192,7 @@
             // 
             this.dataGridList.AllowUserToAddRows = false;
             this.dataGridList.AutoGenerateColumns = false;
-            this.dataGridList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dataGridList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -313,6 +315,14 @@
             this.grpActions.TabStop = false;
             this.grpActions.Text = "Actions:";
             // 
+            // txtMaxWorkouts
+            // 
+            this.txtMaxWorkouts.Location = new System.Drawing.Point(16, 23);
+            this.txtMaxWorkouts.Name = "txtMaxWorkouts";
+            this.txtMaxWorkouts.Size = new System.Drawing.Size(120, 22);
+            this.txtMaxWorkouts.TabIndex = 5;
+            this.txtMaxWorkouts.Text = "10";
+            // 
             // cmbSportType
             // 
             this.cmbSportType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -368,6 +378,13 @@
             this.bgWorkerDownload.WorkerSupportsCancellation = true;
             this.bgWorkerDownload.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgWorkerDownload_DoWork);
             this.bgWorkerDownload.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgWorkerDownload_RunWorkerCompleted);
+            // 
+            // bgWorkerSelectAll
+            // 
+            this.bgWorkerSelectAll.WorkerReportsProgress = true;
+            this.bgWorkerSelectAll.WorkerSupportsCancellation = true;
+            this.bgWorkerSelectAll.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgWorkerSelectAll_DoWork);
+            this.bgWorkerSelectAll.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgWorkerSelectAll_RunWorkerCompleted);
             // 
             // starttimeDataGridViewTextBoxColumn
             // 
@@ -428,14 +445,6 @@
             // workoutBindingSource
             // 
             this.workoutBindingSource.DataSource = typeof(EndomondoExport.Workout);
-            // 
-            // txtMaxWorkouts
-            // 
-            this.txtMaxWorkouts.Location = new System.Drawing.Point(16, 23);
-            this.txtMaxWorkouts.Name = "txtMaxWorkouts";
-            this.txtMaxWorkouts.Size = new System.Drawing.Size(120, 22);
-            this.txtMaxWorkouts.TabIndex = 5;
-            this.txtMaxWorkouts.Text = "5000";
             // 
             // frmMain
             // 
@@ -505,6 +514,7 @@
         private System.ComponentModel.BackgroundWorker bgWorkerList;
         private System.ComponentModel.BackgroundWorker bgWorkerDownload;
         private System.Windows.Forms.TextBox txtMaxWorkouts;
+        private System.ComponentModel.BackgroundWorker bgWorkerSelectAll;
     }
 }
 
