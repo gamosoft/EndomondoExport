@@ -112,10 +112,12 @@ namespace EndomondoExport
                     case 5: // Duration
                         e.Value = ConvertSeconds(double.Parse(e.Value.ToString()));
                         break;
-                    case 6: // Avg. Speed
+                    case 6: // Steps
+                        break;
+                    case 7: // Avg. Speed
                         e.Value = double.Parse(e.Value.ToString()).ToString("0.0 km/h");
                         break;
-                    case 7: // Route
+                    case 8: // Route
                         break;
                     default:
                         break;
