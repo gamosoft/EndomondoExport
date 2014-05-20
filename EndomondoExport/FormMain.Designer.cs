@@ -45,8 +45,6 @@
             this.btnListWorkouts = new System.Windows.Forms.Button();
             this.btnGetWorkouts = new System.Windows.Forms.Button();
             this.dataGridList = new System.Windows.Forms.DataGridView();
-            this.Select = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.chkSelectAll = new System.Windows.Forms.CheckBox();
             this.folderDlg = new System.Windows.Forms.FolderBrowserDialog();
             this.btnChooseOutput = new System.Windows.Forms.Button();
@@ -61,6 +59,9 @@
             this.bgWorkerList = new System.ComponentModel.BackgroundWorker();
             this.bgWorkerDownload = new System.ComponentModel.BackgroundWorker();
             this.bgWorkerSelectAll = new System.ComponentModel.BackgroundWorker();
+            this.Select = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.stepsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.starttimeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sportDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -209,6 +210,7 @@
             this.sportDataGridViewTextBoxColumn,
             this.distancekmDataGridViewTextBoxColumn,
             this.durationsecDataGridViewTextBoxColumn,
+            this.stepsDataGridViewTextBoxColumn,
             this.speedkmhavgDataGridViewTextBoxColumn,
             this.routeidDataGridViewTextBoxColumn,
             this.idDataGridViewTextBoxColumn});
@@ -233,27 +235,11 @@
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridList.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.dataGridList.RowHeadersVisible = false;
             this.dataGridList.RowTemplate.Height = 24;
             this.dataGridList.Size = new System.Drawing.Size(1084, 502);
             this.dataGridList.TabIndex = 9;
             this.dataGridList.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridList_CellFormatting);
-            // 
-            // Select
-            // 
-            this.Select.FalseValue = "false";
-            this.Select.HeaderText = "Select";
-            this.Select.Name = "Select";
-            this.Select.TrueValue = "true";
-            this.Select.Width = 53;
-            // 
-            // idDataGridViewTextBoxColumn
-            // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            this.idDataGridViewTextBoxColumn.ReadOnly = true;
-            this.idDataGridViewTextBoxColumn.Visible = false;
-            this.idDataGridViewTextBoxColumn.Width = 44;
             // 
             // chkSelectAll
             // 
@@ -386,6 +372,31 @@
             this.bgWorkerSelectAll.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgWorkerSelectAll_DoWork);
             this.bgWorkerSelectAll.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgWorkerSelectAll_RunWorkerCompleted);
             // 
+            // Select
+            // 
+            this.Select.FalseValue = "false";
+            this.Select.HeaderText = "Select";
+            this.Select.Name = "Select";
+            this.Select.TrueValue = "true";
+            this.Select.Width = 53;
+            // 
+            // stepsDataGridViewTextBoxColumn
+            // 
+            this.stepsDataGridViewTextBoxColumn.DataPropertyName = "steps";
+            this.stepsDataGridViewTextBoxColumn.HeaderText = "Steps";
+            this.stepsDataGridViewTextBoxColumn.Name = "stepsDataGridViewTextBoxColumn";
+            this.stepsDataGridViewTextBoxColumn.ReadOnly = true;
+            this.stepsDataGridViewTextBoxColumn.Width = 69;
+            // 
+            // idDataGridViewTextBoxColumn
+            // 
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "id";
+            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            this.idDataGridViewTextBoxColumn.ReadOnly = true;
+            this.idDataGridViewTextBoxColumn.Visible = false;
+            this.idDataGridViewTextBoxColumn.Width = 5;
+            // 
             // starttimeDataGridViewTextBoxColumn
             // 
             this.starttimeDataGridViewTextBoxColumn.DataPropertyName = "start_time";
@@ -432,7 +443,7 @@
             this.speedkmhavgDataGridViewTextBoxColumn.HeaderText = "Avg. Speed";
             this.speedkmhavgDataGridViewTextBoxColumn.Name = "speedkmhavgDataGridViewTextBoxColumn";
             this.speedkmhavgDataGridViewTextBoxColumn.ReadOnly = true;
-            this.speedkmhavgDataGridViewTextBoxColumn.Width = 106;
+            this.speedkmhavgDataGridViewTextBoxColumn.Width = 97;
             // 
             // routeidDataGridViewTextBoxColumn
             // 
@@ -502,19 +513,20 @@
         private System.Windows.Forms.RadioButton rbtnTCX;
         private System.Windows.Forms.CheckBox chkOriginals;
         private System.Windows.Forms.ComboBox cmbSportType;
+        private System.ComponentModel.BackgroundWorker bgWorkerList;
+        private System.ComponentModel.BackgroundWorker bgWorkerDownload;
+        private System.Windows.Forms.TextBox txtMaxWorkouts;
+        private System.ComponentModel.BackgroundWorker bgWorkerSelectAll;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Select;
         private System.Windows.Forms.DataGridViewTextBoxColumn starttimeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn sportDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn distancekmDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn durationsecDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn stepsDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn speedkmhavgDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn routeidDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
-        private System.ComponentModel.BackgroundWorker bgWorkerList;
-        private System.ComponentModel.BackgroundWorker bgWorkerDownload;
-        private System.Windows.Forms.TextBox txtMaxWorkouts;
-        private System.ComponentModel.BackgroundWorker bgWorkerSelectAll;
     }
 }
 

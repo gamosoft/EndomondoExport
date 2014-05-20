@@ -16,6 +16,8 @@ namespace EndomondoExport
 
         public string sport { get; set; }
 
+        public string steps { get; set; }
+
         public string distance_km { get; set; }
 
         public string duration_sec { get; set; }
