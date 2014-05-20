@@ -19,5 +19,7 @@ namespace EndomondoExport.GPX
 
         public string time { get; set; }
 
+
+        // <extensions><gpxtpx:TrackPointExtension><gpxtpx:hr>77</gpxtpx:hr></gpxtpx:TrackPointExtension></extensions>
     }
 }
