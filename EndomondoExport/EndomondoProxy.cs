@@ -36,6 +36,9 @@ namespace EndomondoExport
 		{
 			this.Email = email;
 			this.Password = password;
+
+			ServicePointManager.Expect100Continue = true;
+			ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 		}
 
 
@@ -231,7 +234,7 @@ namespace EndomondoExport
 										LatitudeDegrees = values[2], LongitudeDegrees = values[3]
 									},
 									AltitudeMeters = values[6],
-									DistanceMeters = (double.Parse(values[4]) * 1000).ToString(),
+									DistanceMeters = GetDistance(values[4]),
 									HeartRateBpm = values[7]
 								});
 							}
@@ -248,6 +251,15 @@ namespace EndomondoExport
 			// 2014-04-05 18:29:30 UTC
 			// 2014-04-05T18:29:30Z
 			return date.Replace(" UTC", "Z").Replace(" ", "T");
+		}
+
+		private string GetDistance(string value)
+        {
+			double result = 0;
+			if (Double.TryParse(value, out result))
+				return (result * 1000).ToString();
+			else
+				return String.Empty;
 		}
 
 		private string MakeWebRequest (string url)
